@@ -9,18 +9,17 @@ import model.Cirkel;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
-        Cirkel mijnEersteCirkel = new Cirkel(6);
+        Cirkel[] mijnCirkelArray = new Cirkel[3];
 
-        System.out.println(Cirkel.aantalCirkels);
+        mijnCirkelArray[0] = new Cirkel(6);
+        mijnCirkelArray[1] = new Cirkel();
+        mijnCirkelArray[2] = new Cirkel(3, 1, 4, "blauw");
 
-        Cirkel mijnTweedeCirkel = new Cirkel();
-        Cirkel mijnDerdeCirkel = new Cirkel();
-
-        System.out.println(Cirkel.geefDefinitie());
-
-        System.out.println(mijnEersteCirkel.geefOmtrek());
-        System.out.println(mijnEersteCirkel.geefOppervlakte());
-
+        for (int cirkel = 0; cirkel < mijnCirkelArray.length; cirkel++) {
+            System.out.println(mijnCirkelArray[cirkel].geefOppervlakte());
+            System.out.println(mijnCirkelArray[cirkel].vertelOverGrootte());
+            System.out.println();
+        }
     }
 
 }
