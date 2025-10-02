@@ -32,6 +32,7 @@ public class MeetkundeLauncher {
 
         for (int rechthoek = 0; rechthoek < rechthoeken.length; rechthoek++) {
             System.out.println(rechthoeken[rechthoek].vertelOverGrootte());
+            System.out.println(rechthoeken[rechthoek]);
             System.out.println();
         }
     }

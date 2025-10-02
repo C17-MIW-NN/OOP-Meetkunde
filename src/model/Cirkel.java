@@ -4,28 +4,23 @@ package model;
  * @author Vincent Velthuizen
  * Legt de eigenschappen van een cirkel vast.
  */
-public class Cirkel {
+public class Cirkel extends Figuur {
     private static final int DEFAULT_STRAAL = 1;
-    private static final String DEFAULT_KLEUR = "geel";
-
-    private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
-
-    private static int aantalCirkels = 0;
 
     private double straal;
     private Punt middelpunt;
-    private String kleur;
 
     public Cirkel(double straal, Punt middelpunt, String kleur) {
+        super(kleur);
         setStraal(straal);
         this.middelpunt = middelpunt;
-        this.kleur = kleur;
 
-        aantalCirkels++;
+        System.out.println(getKleur());
     }
 
     public Cirkel(double straal) {
-        this(straal, new Punt(), DEFAULT_KLEUR);
+        this.straal = straal;
+        this.middelpunt = new Punt();
     }
 
     public Cirkel() {
@@ -36,24 +31,19 @@ public class Cirkel {
         return "Een cirkel is een verzameling punten, die allemaal dezelfde afstand tot een middelpunt hebben.";
     }
 
+    @Override
     public double geefOmtrek() {
         return 2 * Math.PI * straal;
     }
 
+    @Override
     public double geefOppervlakte() {
         return Math.PI * straal * straal;
     }
 
-    public String vertelOverGrootte() {
-        if (geefOppervlakte() > GRENSWAARDE_GROOT_FIGUUR) {
-            return "Ik ben groot!!!";
-        } else {
-            return "Zij zijn groot en ik ben klein en dat is NIET EERLIJK!!!";
-        }
-    }
-
-    public static int getAantalCirkels() {
-        return aantalCirkels;
+    @Override
+    public String toString() {
+        return String.format("%s\nStraal: %s\nMiddelpunt: %s", super.toString(), this.straal, this.middelpunt);
     }
 
     public void setStraal(double straal) {
