@@ -13,6 +13,7 @@ public class Rechthoek extends Figuur {
     private Punt hoekpuntLinksboven;
 
     public Rechthoek(double lengte, double breedte, Punt hoekpuntLinksboven, String kleur) {
+        super(kleur);
         this.lengte = lengte;
         this.breedte = breedte;
         this.hoekpuntLinksboven = hoekpuntLinksboven;
