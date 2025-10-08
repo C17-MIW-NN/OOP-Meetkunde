@@ -14,12 +14,11 @@ public class Cirkel extends Figuur {
         super(kleur);
         setStraal(straal);
         this.middelpunt = middelpunt;
-
-        System.out.println(getKleur());
     }
 
     public Cirkel(double straal) {
-        this.straal = straal;
+        super();
+        setStraal(straal);
         this.middelpunt = new Punt();
     }
 
@@ -42,14 +41,24 @@ public class Cirkel extends Figuur {
     }
 
     @Override
+    public boolean pastInOppervlak(double lengte, double breedte) {
+        double diameter = 2 * straal;
+        return diameter < lengte && diameter < breedte;
+    }
+
+    @Override
     public String toString() {
         return String.format("%s\nStraal: %s\nMiddelpunt: %s", super.toString(), this.straal, this.middelpunt);
     }
 
+    public double getStraal() {
+        return straal;
+    }
+
     public void setStraal(double straal) {
         if (straal <= 0) {
-            System.err.printf("De straal moet positief zijn. De straal wordt nu op %d gezet.\n", DEFAULT_STRAAL);
-            straal = DEFAULT_STRAAL;
+            throw new IllegalArgumentException(
+                    String.format("De straal moet positief zijn, %s is niet geldig.", straal));
         }
 
         this.straal = straal;

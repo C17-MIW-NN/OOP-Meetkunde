@@ -4,7 +4,7 @@ package model;
  * @author Vincent Velthuizen
  * Algemene eigenschappen die alle figuren delen
  */
-public abstract class Figuur {
+public abstract class Figuur implements Comparable<Figuur>, ToelaatbaarInOppervlak {
     private static final double GRENSWAARDE_GROOT_FIGUUR = 100.0;
 
     private static final String DEFAULT_KLEUR = "chartreuse";
@@ -33,6 +33,17 @@ public abstract class Figuur {
         } else {
             return "Zij zijn groot en ik ben klein en dat is NIET EERLIJK!!!";
         }
+    }
+
+    @Override
+    public int compareTo(Figuur andereFiguur) {
+        int compare = Double.compare(this.geefOppervlakte(), andereFiguur.geefOppervlakte());
+
+        if (compare == 0) {
+            compare = this.kleur.compareTo(andereFiguur.getKleur());
+        }
+
+        return compare;
     }
 
     @Override

@@ -1,9 +1,10 @@
 package controller;
 
-import model.Cirkel;
-import model.Figuur;
-import model.Punt;
-import model.Rechthoek;
+import model.*;
+
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  * @author Vincent Velthuizen
@@ -12,15 +13,28 @@ import model.Rechthoek;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
-        Figuur[] figuren = new Figuur[3];
+        Oppervlak oppervlak = new Oppervlak(20, 35);
 
-        figuren[0] = new Cirkel();
-        figuren[1] = new Rechthoek();
-        figuren[2] = new Cirkel(6);
+        Scanner toetsenbord = new Scanner(System.in);
 
-        for (int index = 0; index < figuren.length; index++) {
-            toonInformatie(figuren[index]);
-        }
+        double straal = 0.0;
+        do {
+            System.out.print("Welke straal moet de volgende Cirkel hebben? ");
+
+            try {
+                straal = toetsenbord.nextDouble();
+                oppervlak.voegFiguurToe(new Cirkel(straal));
+            } catch (IllegalArgumentException illegalArgumentException) {
+                System.err.println(illegalArgumentException.getMessage());
+            } catch (InputMismatchException inputMismatchException) {
+                String fouteInput = toetsenbord.nextLine();
+                System.err.println(fouteInput + " was geen geldig komma-getal, probeer het opnieuw!");
+            } finally {
+                System.out.println("De try-catch heeft zijn werk gedaan.");
+            }
+        } while (straal != 1.0);
+
+//        System.out.println(oppervlak);
     }
 
     public static void toonInformatie(Figuur figuur) {
