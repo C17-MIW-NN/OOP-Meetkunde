@@ -2,6 +2,9 @@ package controller;
 
 import model.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,28 +16,26 @@ import java.util.Scanner;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
-        Oppervlak oppervlak = new Oppervlak(20, 35);
+        ArrayList<Cirkel> cirkels = new ArrayList<>();
 
-        Scanner toetsenbord = new Scanner(System.in);
+        File stralenbestand = new File("resources/stralen.txt");
 
-        double straal = 0.0;
-        do {
-            System.out.print("Welke straal moet de volgende Cirkel hebben? ");
+        try {
+            Scanner bestandLezer = new Scanner(stralenbestand);
 
-            try {
-                straal = toetsenbord.nextDouble();
-                oppervlak.voegFiguurToe(new Cirkel(straal));
-            } catch (IllegalArgumentException illegalArgumentException) {
-                System.err.println(illegalArgumentException.getMessage());
-            } catch (InputMismatchException inputMismatchException) {
-                String fouteInput = toetsenbord.nextLine();
-                System.err.println(fouteInput + " was geen geldig komma-getal, probeer het opnieuw!");
-            } finally {
-                System.out.println("De try-catch heeft zijn werk gedaan.");
+            while (bestandLezer.hasNextDouble()) {
+                double straal = bestandLezer.nextDouble();
+                cirkels.add(new Cirkel(straal));
             }
-        } while (straal != 1.0);
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("Het is niet gelukt het stralenbestand te openen");
+            System.out.println(fileNotFoundException.getMessage());
+        }
 
-//        System.out.println(oppervlak);
+        for (Cirkel cirkel : cirkels) {
+            System.out.println(cirkel);
+            System.out.println();
+        }
     }
 
     public static void toonInformatie(Figuur figuur) {
