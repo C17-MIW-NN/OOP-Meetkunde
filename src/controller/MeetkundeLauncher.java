@@ -1,14 +1,16 @@
 package controller;
 
+import database.CirkelDAO;
+import database.DBaccess;
+import database.PuntDAO;
 import model.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.sql.*;
+import java.util.*;
 
 /**
  * @author Vincent Velthuizen
@@ -17,31 +19,11 @@ import java.util.Scanner;
 public class MeetkundeLauncher {
 
     public static void main(String[] args) {
-        ArrayList<Rechthoek> rechthoeken = new ArrayList<>();
+        DBaccess dBaccess = new DBaccess("Figuren", "userFiguren", "userFigurenPW");
+        CirkelDAO cirkelDAO = new CirkelDAO(dBaccess);
 
-        File rechthoekenbestand = new File("resources/rechthoeken.csv");
-
-        try {
-            Scanner bestandLezer = new Scanner(rechthoekenbestand);
-
-            while (bestandLezer.hasNextLine()) {
-                String[] rechthoekData = bestandLezer.nextLine().split(",");
-
-                double lengte = Double.parseDouble(rechthoekData[0]);
-                double breedte = Double.parseDouble(rechthoekData[1]);
-                double xCoordinaat = Double.parseDouble(rechthoekData[2]);
-                double yCoordinaat = Double.parseDouble(rechthoekData[3]);
-                String kleur = rechthoekData[4];
-
-                rechthoeken.add(new Rechthoek(lengte, breedte, new Punt(xCoordinaat, yCoordinaat), kleur));
-            }
-        } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println("Het is niet gelukt het rechthoekenbestand te openen");
-            System.out.println(fileNotFoundException.getMessage());
-        }
-
-        for (Rechthoek rechthoek : rechthoeken) {
-            System.out.println(rechthoek);
+        for (Cirkel cirkel : cirkelDAO.haalCirkelsOp()) {
+            System.out.println(cirkel);
             System.out.println();
         }
     }

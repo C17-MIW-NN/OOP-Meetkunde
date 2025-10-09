@@ -1,0 +1,35 @@
+Kleur: groen
+Omtrek: 14,00
+Oppervlakte: 10,00
+Lengte: 2,00
+Breedte: 5,00
+HoekpuntLinksboven: (2,00; 4,00)
+
+Kleur: blauw
+Omtrek: 26,00
+Oppervlakte: 42,00
+Lengte: 7,00
+Breedte: 6,00
+HoekpuntLinksboven: (5,00; 6,00)
+
+Kleur: zwart
+Omtrek: 32,00
+Oppervlakte: 63,00
+Lengte: 9,00
+Breedte: 7,00
+HoekpuntLinksboven: (6,00; 1,00)
+
+Kleur: oranje
+Omtrek: 12,00
+Oppervlakte: 8,00
+Lengte: 4,00
+Breedte: 2,00
+HoekpuntLinksboven: (-2,00; -4,00)
+
+Kleur: karmozijn
+Omtrek: 10,00
+Oppervlakte: 6,00
+Lengte: 2,00
+Breedte: 3,00
+HoekpuntLinksboven: (-4,00; 2,00)
+

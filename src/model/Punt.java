@@ -28,4 +28,8 @@ public class Punt {
     public double getxCoordinaat() {
         return xCoordinaat;
     }
+
+    public double getyCoordinaat() {
+        return  yCoordinaat;
+    }
 }
